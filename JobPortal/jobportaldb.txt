@@ -1,0 +1,52 @@
+CREATE TABLE jobseeker
+(seeker_id INT AUTO_INCREMENT PRIMARY KEY,fname VARCHAR(255),lname VARCHAR(255),email VARCHAR(255),password VARCHAR(255),
+contactme VARCHAR(255),state VARCHAR(50),city VARCHAR(50),resume_path VARCHAR(255),qualification VARCHAR(255));
+
+CREATE TABLE jobs
+(job_id INT AUTO_INCREMENT PRIMARY KEY ,provider_id INT,job_title VARCHAR(255),job_description VARCHAR(255),location VARCHAR(255),category_id INT,
+experienece_required INT,salary VARCHAR(255),companyname VARCHAR(100),companyimage VARCHAR(100),status VARCHAR(10));
+
+CREATE TABLE jobprovider
+(provider_id INT  AUTO_INCREMENT PRIMARY KEY,email VARCHAR(255),password VARCHAR(255),company_name VARCHAR(255),company_description VARCHAR(255));
+
+CREATE TABLE job_application
+(id INT AUTO_INCREMENT PRIMARY KEY,job_id INT,seeker_id INT,applied_at TIMESTAMP);
+
+CREATE TABLE categories
+(category_id INT AUTO_INCREMENT PRIMARY KEY,category_name varchar(255));
+
+
+INSERT INTO jobseeker (fname, lname, email, password, contactme, state, city, resume_path, qualification) VALUES
+('John', 'Doe', 'john.doe@example.com', 'password123', '1234567890', 'California', 'Los Angeles', '/resumes/john_doe.pdf', 'Bachelor\'s in Computer Science'),
+('Jane', 'Smith', 'jane.smith@example.com', 'password456', '9876543210', 'New York', 'New York City', '/resumes/jane_smith.pdf', 'Master\'s in Data Science'),
+('Sam', 'Wilson', 'sam.wilson@example.com', 'password789', '5554443333', 'Texas', 'Austin', '/resumes/sam_wilson.pdf', 'Bachelor\'s in Business Administration');
+
+INSERT INTO jobprovider (email, password, company_name, company_description) VALUES
+('provider1@techcorp.com', 'securepass1', 'TechCorp', 'A leading technology solutions company.'),
+('provider2@healthcare.com', 'securepass2', 'Healthcare Inc.', 'A prominent healthcare provider.'),
+('provider3@fintech.com', 'securepass3', 'FinTech Solutions', 'Innovative financial technology services.');
+
+INSERT INTO categories (category_name) VALUES
+('Software Development'),
+('Data Science'),
+('Healthcare'),
+('Finance'),
+('Marketing');
+
+
+INSERT INTO jobs (provider_id, job_title, job_description, location, category_id, experienece_required, salary, companyname, companyimage, status) VALUES
+(1, 'Frontend Developer', 'Develop and maintain web applications', 'Los Angeles, CA', 1, 2, '$70,000 - $90,000', 'TechCorp', '/images/techcorp.png', 'Open'),
+(2, 'Data Analyst', 'Analyze healthcare data for insights', 'New York, NY', 2, 1, '$60,000 - $80,000', 'Healthcare Inc.', '/images/healthcare.png', 'Open'),
+(3, 'Financial Analyst', 'Assist in financial planning and analysis', 'Chicago, IL', 4, 3, '$80,000 - $100,000', 'FinTech Solutions', '/images/fintech.png', 'Open'),
+(1, 'Backend Developer', 'Design and implement APIs', 'San Francisco, CA', 1, 3, '$90,000 - $120,000', 'TechCorp', '/images/techcorp.png', 'Open'),
+(2, 'Nurse Practitioner', 'Provide medical care to patients', 'Houston, TX', 3, 2, '$75,000 - $95,000', 'Healthcare Inc.', '/images/healthcare.png', 'Open');
+
+
+INSERT INTO job_application (job_id, seeker_id, applied_at) VALUES
+(1, 1, CURRENT_TIMESTAMP),
+(2, 2, CURRENT_TIMESTAMP),
+(3, 3, CURRENT_TIMESTAMP),
+(1, 2, CURRENT_TIMESTAMP),
+(4, 1, CURRENT_TIMESTAMP);
+
+
